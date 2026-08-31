@@ -8,7 +8,9 @@ export const allPracticeAreasQuery = groq`
 
 export const practiceAreaBySlugQuery = groq`
   *[_type == "practiceArea" && slug.current == $slug][0] {
-    _id, title, "slug": slug.current, isFree, heroHeadline, heroSubhead, videoUrl, body,
+    _id, title, "slug": slug.current, isFree, heroHeadline, heroSubhead,
+    quickFacts, subNiches, whyMarketingMisleads, risksOfWrongLawyer,
+    humanMatchingProcess, legalProcessSteps, videos, body,
     seoTitle, seoDescription, seoKeywords,
     faqs[]-> { _id, question, answer },
     relatedPosts[]-> { _id, title, "slug": slug.current, excerpt, coverImage, publishedAt }

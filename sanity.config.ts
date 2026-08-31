@@ -1,0 +1,1 @@
+import { defineConfig } from 'sanity'; import { deskTool } from 'sanity/desk'; import { visionTool } from '@sanity/vision'; import { schemaTypes } from './sanity/schemaTypes'; export default defineConfig({ name: 'default', title: 'Free Lawyer Finder CMS', projectId: 'wud5fj7s', dataset: 'production', plugins: [deskTool(), visionTool()], schema: { types: schemaTypes, }, });
