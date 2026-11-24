@@ -2,26 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Rhythm from the redesign: a 1280px content wrap on equal side margins, sections that
+   fill a screen, the h2 120px under a section's top (96 on a phone). */
+:root {
+  --nav: 72px;
+  --gut: 80px;
+  --padt: 120px;
+  --padb: 72px;
+}
+@media (max-width: 1023px) {
+  :root { --gut: 48px; }
+}
+@media (max-width: 639px) {
+  :root { --nav: 56px; --gut: 24px; --padt: 96px; --padb: 48px; }
+}
+
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav);
   }
   body {
-    @apply bg-paper text-charcoal font-body antialiased;
+    @apply bg-paper text-ink font-body antialiased;
   }
   h1, h2, h3, h4 {
-    @apply font-display text-ink;
+    @apply font-display font-normal text-ink;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
   a {
-    @apply underline-offset-2;
+    @apply underline-offset-4;
   }
-  /* Visible keyboard focus everywhere — accessibility floor, not optional */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
-  textarea:focus-visible {
-    outline: 2px solid #C9932F;
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid #181715;
     outline-offset: 2px;
+  }
+  /* on the dark band the ring turns brass */
+  .bg-ink a:focus-visible,
+  .bg-ink button:focus-visible {
+    outline-color: #bfb21a;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: min(100% - 2 * var(--gut), 1280px);
+    margin-inline: auto;
+  }
+  /* A section one screen tall at least: grows rather than clips when editors add text. */
+  .screen {
+    min-height: calc(100svh - var(--nav));
+    padding-top: calc(var(--padt) - var(--nav));
+    padding-bottom: var(--padb);
+  }
+  /* The home page is a stack of whole screens under the fixed header: each section is one
+     screen at least, its heading 120px under its top (96 on a phone). */
+  .home-screen {
+    min-height: 100svh;
+    padding-top: var(--padt);
+    padding-bottom: var(--padb);
+  }
+  .t-h1 {
+    @apply font-display font-normal;
+    font-size: clamp(40px, 2.4vw + 37px, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+  .t-h2 {
+    @apply font-display font-normal;
+    font-size: clamp(30px, 1.4vw + 24px, 48px);
+    line-height: 1.08;
+  }
+  .t-lead {
+    font-size: clamp(17px, 0.3vw + 16px, 20px);
+    line-height: 1.5;
+  }
+  .t-label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-6 font-body text-base font-medium no-underline transition-transform duration-150;
+    min-height: 44px;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { @apply bg-ink text-paper hover:bg-ink-light; }
+  .btn-secondary { @apply bg-surface text-ink hover:bg-[#d0d0ca]; }
+  .link {
+    @apply font-medium text-ink underline decoration-ink/30 decoration-1 hover:decoration-ink;
   }
 }
 

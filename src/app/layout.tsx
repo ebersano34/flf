@@ -1,23 +1,20 @@
 import type { Metadata } from 'next';
-import { Source_Serif_4, Inter, IBM_Plex_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin'],
-  variable: '--font-source-serif',
+// Self-hosted variable fonts (no build-time call to Google Fonts).
+const display = localFont({
+  src: '../fonts/red-hat-display-latin-wght-normal.woff2',
+  weight: '300 900',
+  variable: '--font-display',
   display: 'swap',
 });
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-plex-mono',
+const text = localFont({
+  src: '../fonts/red-hat-text-latin-wght-normal.woff2',
+  weight: '300 700',
+  variable: '--font-text',
   display: 'swap',
 });
 
@@ -26,11 +23,11 @@ const SITE_URL = 'https://freelawyerfinder.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Free Lawyer Finder — Helping Those Who Need It Most',
+    default: 'Free Lawyer Finder: free attorney matching by a real person',
     template: '%s | Free Lawyer Finder',
   },
   description:
-    'A free referral service connecting people who have been hurt or exploited with the best available attorney in their area — no ads, no fees, no catch.',
+    'A person on our team reads what happened to you and introduces you to an attorney who handles cases like yours, at no cost to you.',
   openGraph: {
     type: 'website',
     siteName: 'Free Lawyer Finder',
@@ -44,10 +41,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sourceSerif.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${display.variable} ${text.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="content" className="flex-1 pt-[var(--nav)]">{children}</main>
         <Footer />
       </body>
     </html>

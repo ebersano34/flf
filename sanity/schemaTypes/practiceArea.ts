@@ -35,6 +35,21 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'homeSummary',
+      title: 'Home page summary',
+      type: 'string',
+      group: 'content',
+      description: 'One short line for the home page list, e.g. "Crashes, dog bites, falls and wrongful death." Name real sub-specialties.',
+      validation: (Rule) => Rule.max(70),
+    }),
+    defineField({
+      name: 'homeOrder',
+      title: 'Order on the home page',
+      type: 'number',
+      group: 'content',
+      description: '1 shows first. Areas without a number follow, A to Z.',
+    }),
+    defineField({
       name: 'heroHeadline',
       title: 'Hero Headline',
       type: 'string',
