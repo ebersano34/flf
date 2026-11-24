@@ -19,7 +19,7 @@ export default function ContactUsPage() {
         someone in your area.
       </p>
       <div className="mt-10">
-        <ContactForm />
+        <ContactForm context="Contact page" submitLabel="Send your message" sentLine="Your message is in. A person on our team will email you." />
       </div>
     </section>
   );

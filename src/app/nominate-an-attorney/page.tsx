@@ -17,7 +17,7 @@ export default function NominateAttorneyPage() {
         consider them for our referral network.
       </p>
       <div className="mt-10">
-        <ContactForm context="Attorney Nomination" />
+        <ContactForm context="Attorney Nomination" submitLabel="Send the nomination" sentLine="Your nomination is in. Thank you." />
       </div>
     </section>
   );

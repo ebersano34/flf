@@ -127,3 +127,21 @@ exist as real pages on the live site.
   Analytics
 - Keep writing blog posts under each practice area — content depth is the
   single biggest lever for both search ranking and AI-answer citation
+
+---
+
+## The home page (2026 redesign)
+
+The home page is built from one **Home Page** document in Sanity Studio (it sits at the top of the
+content list). Open it, check the text, and click **Publish**. Until it is published, the site shows
+the same copy from `src/lib/homeDefaults.ts`, and any field you leave empty falls back to it.
+
+- **Case types** on the home page come from the Practice Area documents: each one's title, its new
+  **Home page summary** line, its **Order on the home page** number, and whether it is free.
+- **Questions** are FAQ documents you pick in the Home Page document (none picked: the built-in five).
+- **Videos** are YouTube links; the posters come from YouTube.
+- The form posts to `/api/contact`, which still needs wiring to email or your intake tool (see that file).
+
+Design: tasteskill 2.5.1 (palette "Newsprint and brass", Red Hat Display / Red Hat Text, self-hosted in
+`src/fonts`). The "Why we exist" statement uses the tasteskill word-highlight moment, shipped as is in
+`public/taste/moments` (MIT licence beside it).

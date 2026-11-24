@@ -47,3 +47,20 @@ export const siteSettingsQuery = groq`
     organizationType, socialLinks
   }
 `;
+
+export const homePageQuery = groq`
+  *[_type == "homePage" && _id == "homePage"][0] {
+    heroKicker, heroHeadline, heroLead, primaryCtaLabel, secondaryCtaLabel, diagram,
+    statementLabel, statementText, statementHighlight,
+    casesHeading, casesIntro, introVideoUrl,
+    faqHeading, faqIntro, faqs[]-> { _id, question, answer },
+    videosHeading, videosIntro, videos[] { title, description, url },
+    formHeading, formIntro, formSteps, closeHeading, closeLine, seoTitle, seoDescription
+  }
+`;
+
+export const homeCasesQuery = groq`
+  *[_type == "practiceArea" && defined(slug.current)] | order(coalesce(homeOrder, 99) asc, title asc) {
+    _id, title, "slug": slug.current, homeSummary, isFree
+  }
+`;
